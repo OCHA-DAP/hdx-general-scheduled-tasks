@@ -1,0 +1,26 @@
+name: Trigger stats
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 7 * * *'
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10
+      - name: Refreshing sources
+        with:
+          HDX_API_TOKEN: ${{ secrets.HDX_API_TOKEN }}
+        run: python main.py
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        name: Commit updated sources
+        with:
+          commit_message: automatic - Sources updated
