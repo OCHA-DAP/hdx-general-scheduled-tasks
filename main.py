@@ -4,8 +4,11 @@ import os
 
 import requests
 
+import sys
+
 FOLDER_NAME = 'data'
-URL = 'https://dev.data-humdata-org.ahconu.org/api/3/action/hdx_push_general_stats'
+MAIN_URL = 'https://data.humdata.org/api/3/action/hdx_push_general_stats'
+DEV_URL = 'https://{}.data-humdata-org.ahconu.org/api/3/action/hdx_push_general_stats'
 # URL = 'https://data.humdata.local/api/3/action/hdx_push_general_stats'
 
 CSV_HEADERS = [
@@ -20,29 +23,29 @@ CSV_HEADERS = [
     ]
 
 
-def start_process():
+def start_process(url):
     create_folder_if_necessary('{}/'.format(FOLDER_NAME))
     filename = '{}/results.csv'.format(FOLDER_NAME)
     create_file_if_necessary(filename)
 
-    result = call_hdx_endpoint()
+    result = call_hdx_endpoint(url)
 
-    if result['success']:
-        with open(filename, 'a', newline='') as out:
-            stats = result['result']['mixpanel_meta']
-            writer = csv.writer(out)
-            data = [
-                stats.get('datasets total'),
-                stats.get('datasets in qa'),
-                stats.get('datasets qa completed'),
-                stats.get('datasets with quarantine'),
-                stats.get('datasets with no quarantine'),
-                stats.get('orgs total'),
-                stats.get('orgs with datasets'),
-                stats.get('orgs updating data in past year'),
-            ]
-            writer.writerow(data)
-            print('Finished adding row')
+    # if result['success']:
+    #     with open(filename, 'a', newline='') as out:
+    #         stats = result['result']['mixpanel_meta']
+    #         writer = csv.writer(out)
+    #         data = [
+    #             stats.get('datasets total'),
+    #             stats.get('datasets in qa'),
+    #             stats.get('datasets qa completed'),
+    #             stats.get('datasets with quarantine'),
+    #             stats.get('datasets with no quarantine'),
+    #             stats.get('orgs total'),
+    #             stats.get('orgs with datasets'),
+    #             stats.get('orgs updating data in past year'),
+    #         ]
+    #         writer.writerow(data)
+    #         print('Finished adding row')
 
 
 def create_folder_if_necessary(folder_name):
@@ -57,14 +60,14 @@ def create_file_if_necessary(filename):
         print('CSV file created')
 
 
-def call_hdx_endpoint():
+def call_hdx_endpoint(url):
     token = os.environ.get('HDX_API_TOKEN')
     headers = {
         'Authorization': token,
         'User-Agent': 'HDXINTERNAL_STATS_TRIGGER',
         'content-type': 'application/json'
     }
-    r = requests.post(URL, data={}, headers=headers, verify=False)
+    r = requests.post(url, data={}, headers=headers, verify=False)
     r.raise_for_status()
     return r.json()
 
@@ -76,4 +79,11 @@ def call_hdx_endpoint():
 
 
 if __name__ == '__main__':
-    start_process()
+    url = DEV_URL.format('dev')
+    if len(sys.argv) == 2:
+        server = sys.argv[1]
+        if server == 'main':
+            url = MAIN_URL
+        elif server in ['dev', 'feature', 'stage', 'demo']:
+            url = DEV_URL.format(server)
+    start_process(url)
