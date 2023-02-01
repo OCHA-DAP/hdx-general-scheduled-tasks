@@ -18,10 +18,10 @@ jobs:
           python-version: "3.9"
       - name: Install dependencies
         run: pip install -r requirements.txt
-#      - name: Run main script
-#        run: python api_token_expiration_check.py main
-#        env:
-#          HDX_API_TOKEN: ${{ secrets.HDX_MAIN_API_TOKEN }}
+      - name: Run main script
+        run: python api_token_expiration_check.py main
+        env:
+          HDX_API_TOKEN: ${{ secrets.HDX_MAIN_API_TOKEN }}
       - name: Run dev script
         run: python api_token_expiration_check.py dev
         env:
