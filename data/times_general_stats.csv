@@ -438,3 +438,5 @@ TIMESTAMP,DURATION IN MS,DESCRIPTION
 2023-09-08T07:18:56.359698,898,URL: https://dev.data-humdata-org.ahconu.org/api/3/action/hdx_push_general_stats
 2023-09-09T07:18:02.225934,511,URL: https://data.humdata.org/api/3/action/hdx_push_general_stats
 2023-09-09T07:18:03.140279,764,URL: https://dev.data-humdata-org.ahconu.org/api/3/action/hdx_push_general_stats
+2023-09-10T07:18:20.582128,707,URL: https://data.humdata.org/api/3/action/hdx_push_general_stats
+2023-09-10T07:18:26.426043,5690,URL: https://dev.data-humdata-org.ahconu.org/api/3/action/hdx_push_general_stats
