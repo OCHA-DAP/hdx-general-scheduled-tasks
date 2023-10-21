@@ -1037,3 +1037,7 @@ TIMESTAMP,DURATION IN MS,DESCRIPTION
 2023-10-20T11:12:33.862639,880,2 days check - URL https://data.humdata.org/api/3/action/notify_users_about_api_token_expiration
 2023-10-20T11:12:34.286624,287,7 days check - URL https://dev.data-humdata-org.ahconu.org/api/3/action/notify_users_about_api_token_expiration
 2023-10-20T11:12:34.654271,367,2 days check - URL https://dev.data-humdata-org.ahconu.org/api/3/action/notify_users_about_api_token_expiration
+2023-10-21T11:12:08.196444,322,7 days check - URL https://data.humdata.org/api/3/action/notify_users_about_api_token_expiration
+2023-10-21T11:12:09.326427,1130,2 days check - URL https://data.humdata.org/api/3/action/notify_users_about_api_token_expiration
+2023-10-21T11:12:09.844389,376,7 days check - URL https://dev.data-humdata-org.ahconu.org/api/3/action/notify_users_about_api_token_expiration
+2023-10-21T11:12:10.089752,245,2 days check - URL https://dev.data-humdata-org.ahconu.org/api/3/action/notify_users_about_api_token_expiration
