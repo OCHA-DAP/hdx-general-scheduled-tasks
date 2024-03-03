@@ -770,3 +770,5 @@ TIMESTAMP,DURATION IN MS,DESCRIPTION
 2024-03-01T07:18:54.190777,1990,URL: https://dev.data-humdata-org.ahconu.org/api/3/action/hdx_push_general_stats
 2024-03-02T07:18:36.180066,492,URL: https://data.humdata.org/api/3/action/hdx_push_general_stats
 2024-03-02T07:18:37.209915,919,URL: https://dev.data-humdata-org.ahconu.org/api/3/action/hdx_push_general_stats
+2024-03-03T07:18:49.131783,513,URL: https://data.humdata.org/api/3/action/hdx_push_general_stats
+2024-03-03T07:18:50.389426,1148,URL: https://dev.data-humdata-org.ahconu.org/api/3/action/hdx_push_general_stats
