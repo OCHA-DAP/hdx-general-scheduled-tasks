@@ -27,6 +27,10 @@ def get_server_info() -> (str, bool):
 def call_hdx_endpoint(url: str, headers: dict, data:  dict, verify=True) -> dict:
     r = requests.post(url, data=json.dumps(data), headers=headers, verify=verify)
     print(f"Error parsing JSON response: status_code={r.status_code}, content={r.text}")
+    if r.status_code == 202:
+        print(f'Status: 202 -- Challenge detected, retrying. Headers: {str(r.headers)}')
+        headers['x-amzn-waf-action'] = 'challenge'
+        r = requests.post(url, data=json.dumps(data), headers=headers, verify=verify)
     r.raise_for_status()
     try:
         return r.json()
