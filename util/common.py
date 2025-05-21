@@ -27,8 +27,12 @@ def get_server_info() -> (str, bool):
 def call_hdx_endpoint(url: str, headers: dict, data:  dict, verify=True) -> dict:
     r = requests.post(url, data=json.dumps(data), headers=headers, verify=verify)
     r.raise_for_status()
-    return r.json()
-
+    try:
+        return r.json()
+    except Exception as e:
+        print(f"Error parsing JSON response: status_code={r.status_code}, content={r.text}")
+        raise
+    
 
 def create_folder_if_necessary(folder_name):
     os.makedirs(os.path.dirname(folder_name), exist_ok=True)
