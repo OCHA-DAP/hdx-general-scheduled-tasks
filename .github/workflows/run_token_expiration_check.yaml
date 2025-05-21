@@ -12,18 +12,18 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: main
-      - name: Set up Python 3.9
+      - name: Set up Python 3.12
         uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: "3.12"
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Run main script
-        run: python api_token_expiration_check.py main
+        run: python -u api_token_expiration_check.py main
         env:
           HDX_API_TOKEN: ${{ secrets.HDX_MAIN_API_TOKEN }}
       - name: Run dev script
-        run: python api_token_expiration_check.py dev
+        run: python -u api_token_expiration_check.py dev
         env:
           HDX_API_TOKEN: ${{ secrets.HDX_DEV_API_TOKEN }}
       - uses: stefanzweifel/git-auto-commit-action@v4
