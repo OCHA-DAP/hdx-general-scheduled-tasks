@@ -26,6 +26,7 @@ def get_server_info() -> (str, bool):
 
 def call_hdx_endpoint(url: str, headers: dict, data:  dict, verify=True) -> dict:
     r = requests.post(url, data=json.dumps(data), headers=headers, verify=verify)
+    print(f"Error parsing JSON response: status_code={r.status_code}, content={r.text}")
     r.raise_for_status()
     try:
         return r.json()
